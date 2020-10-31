@@ -17,6 +17,7 @@ namespace InstantPOS.Infrastructure
         {
             services.AddTransient<IProductTypeDataService, ProductTypeDataServices>();
             services.AddTransient<IProductDataService, ProductDataServices>();
+            services.AddTransient<IContactDataService, ContactDataServices>();
             services.AddTransient<IDatabaseConnectionFactory>(e => {
                 return new SqlConnectionFactory(configuration[Configuration.ConnectionString]);
             });
@@ -29,6 +30,7 @@ namespace InstantPOS.Infrastructure
                     Logger = compiled => Console.WriteLine(compiled)
                 };
             });
+            services.AddSingleton(typeof(IDataGeneratorService<>), typeof(DataGeneratorService<>));
             return services;
         }
     }

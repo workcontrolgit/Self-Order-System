@@ -1,7 +1,6 @@
 ﻿using InstantPOS.Application.CQRS.Product.Command;
 using InstantPOS.Application.CQRS.Product.Query;
 using InstantPOS.Application.Models.Product;
-using InstantPOS.WebAPI.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
