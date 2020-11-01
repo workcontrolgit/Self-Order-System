@@ -239,7 +239,7 @@ namespace InstantPOS.WebAPI.Controllers
             In = ParameterLocation.Header,
         });
 
-        c.AddFluentValidationRules();
+        //c.AddFluentValidationRules();
         c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
     });
 

@@ -8,6 +8,8 @@ using SqlKata.Execution;
 using SqlKata.Compilers;
 using System.Data.SqlClient;
 using System;
+using InstantPOS.Application.MockDataServices.Interfaces;
+using InstantPOS.Infrastructure.MockDataServices;
 
 namespace InstantPOS.Infrastructure
 {
@@ -21,6 +23,7 @@ namespace InstantPOS.Infrastructure
             services.AddTransient<IDatabaseConnectionFactory>(e => {
                 return new SqlConnectionFactory(configuration[Configuration.ConnectionString]);
             });
+            //SQLKata DI Container https://sqlkata.com/docs/
             services.AddScoped(factory =>
             {
                 return new QueryFactory
@@ -30,7 +33,8 @@ namespace InstantPOS.Infrastructure
                     Logger = compiled => Console.WriteLine(compiled)
                 };
             });
-            services.AddSingleton(typeof(IDataGeneratorService<>), typeof(DataGeneratorService<>));
+            //GenFu DI Container https://github.com/MisterJames/GenFu
+            services.AddSingleton(typeof(IMockDataService<>), typeof(MockDataServices<>));
             return services;
         }
     }

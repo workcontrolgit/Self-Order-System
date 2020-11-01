@@ -1,12 +1,10 @@
-﻿using InstantPOS.Application.DatabaseServices.Interfaces;
-using System;
+﻿using InstantPOS.Application.MockDataServices.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace InstantPOS.Infrastructure.DatabaseServices
+namespace InstantPOS.Infrastructure.MockDataServices
 {
-    public class DataGeneratorService<T> : IDataGeneratorService<T>
+    public class MockDataServices<T> : IMockDataService<T>
         where T : class, new()
     {
         /// <summary>

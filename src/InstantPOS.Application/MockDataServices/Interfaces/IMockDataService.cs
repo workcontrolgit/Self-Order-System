@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InstantPOS.Application.DatabaseServices.Interfaces
+namespace InstantPOS.Application.MockDataServices.Interfaces
 {
-    public interface IDataGeneratorService<T> where T : class
+    public interface IMockDataService<T> where T : class
     {
         /// <summary>
         /// Generates a collection of type T based on the properties in T

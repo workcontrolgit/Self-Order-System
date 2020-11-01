@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using InstantPOS.Application;
 using InstantPOS.Infrastructure;
 using InstantPOS.WebAPI.Extensions;
@@ -40,6 +41,8 @@ namespace InstantPOS.WebAPI
             // Add authorization services
             RegisterAuthorization(services, Configuration);
 
+            services.AddControllers()
+                .AddFluentValidation();
 
             services.AddSwaggerGen(c =>
             {
@@ -49,14 +52,16 @@ namespace InstantPOS.WebAPI
                     Scheme = "Bearer",
                     Description = "Enter 'Bearer' following by space and JWT.",
                     Name = "Authorization",
-                    //Type = SecuritySchemeType.Http,
                     Type = SecuritySchemeType.ApiKey,
                     In = ParameterLocation.Header,
                 });
 
                 c.AddFluentValidationRules();
                 c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
+                //c.OperationFilter<SwaggerParameterAttributeFilter>();
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
