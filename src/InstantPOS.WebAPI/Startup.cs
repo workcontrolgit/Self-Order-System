@@ -1,7 +1,6 @@
 using FluentValidation.AspNetCore;
 using InstantPOS.Application;
 using InstantPOS.Infrastructure;
-using InstantPOS.WebAPI.Extensions;
 using InstantPOS.WebAPI.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,11 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SqlKata.Compilers;
-using SqlKata.Execution;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Data.SqlClient;
 
 namespace InstantPOS.WebAPI
 {
@@ -30,7 +25,7 @@ namespace InstantPOS.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //Register services in Installers folder
-            services.AddServicesInAssembly(Configuration);
+            //services.AddServicesInAssembly(Configuration);
 
             services.AddApplication();
             services.AddInfrastructure(Configuration);

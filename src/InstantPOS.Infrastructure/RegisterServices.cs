@@ -11,6 +11,8 @@ using System;
 using InstantPOS.Application.MockDataServices.Interfaces;
 using InstantPOS.Infrastructure.MockDataServices;
 using InstantPOS.Infrastructure.Helpers;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Builder;
 
 namespace InstantPOS.Infrastructure
 {
@@ -25,7 +27,17 @@ namespace InstantPOS.Infrastructure
                 return new SqlConnectionFactory(configuration[Configuration.ConnectionString]);
             });
 
-            //ID4
+
+            //ID4 Token Validation
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                    .AddIdentityServerAuthentication(options =>
+                    {
+                        options.Authority = configuration["Sts:ServerUrl"];
+                        options.RequireHttpsMetadata = false;
+                        options.ApiName = configuration["ApiResource:ApiName"];
+                    });
+
+            //ID4 Authorize Filter Policy
             services.AddAuthorizationPolicies(configuration);
 
             //SQLKata DI Container https://sqlkata.com/docs/

@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace InstantPOS.WebAPI.Contracts
+namespace InstantPOS.Infrastructure.Contracts
 {
     public interface IServiceRegistration
     {
