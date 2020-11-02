@@ -1,10 +1,7 @@
 ﻿using InstantPOS.Application.CQRS.Contact.Query;
 using InstantPOS.Application.Models.Contact;
-using InstantPOS.WebAPI.Filters;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;

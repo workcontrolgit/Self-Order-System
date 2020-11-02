@@ -1,7 +1,7 @@
 using FluentValidation.AspNetCore;
 using InstantPOS.Application;
 using InstantPOS.Infrastructure;
-using InstantPOS.WebAPI.Filters;
+using InstantPOS.Infrastructure.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,9 +24,6 @@ namespace InstantPOS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Register services in Installers folder
-            //services.AddServicesInAssembly(Configuration);
-
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddControllers(options =>
@@ -49,7 +46,6 @@ namespace InstantPOS.WebAPI
 
                 c.AddFluentValidationRules();
                 c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
-                //c.OperationFilter<SwaggerParameterAttributeFilter>();
             });
 
 

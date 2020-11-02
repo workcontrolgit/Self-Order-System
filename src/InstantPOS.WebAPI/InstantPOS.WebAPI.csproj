@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>48a21221-403e-48c4-8b39-eefbb5fef7c7</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Filters\ApiExceptionFilter.cs" />
+    <Compile Remove="Filters\SwaggerAuthorizeCheckOperationFilter.cs" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InstantPOS.Application\InstantPOS.Application.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
@@ -24,6 +29,7 @@
     <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Filters\" />
     <Folder Include="Log\" />
   </ItemGroup>
 </Project>

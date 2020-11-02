@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace InstantPOS.WebAPI.Filters
+namespace InstantPOS.Infrastructure.Filters
 {
     public class SwaggerAuthorizeCheckOperationFilter : IOperationFilter
     {
