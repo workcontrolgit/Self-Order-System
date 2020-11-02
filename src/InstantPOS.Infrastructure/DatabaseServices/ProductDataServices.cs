@@ -45,7 +45,7 @@ namespace InstantPOS.Infrastructure.DatabaseServices
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNo, int pageSize)
+        public async Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNumber, int pageSize)
         {
 
             var result = _db.Query("Product")
@@ -59,7 +59,7 @@ namespace InstantPOS.Infrastructure.DatabaseServices
                 .Join("ProductType", "ProductType.ProductTypeID", "Product.ProductTypeID")
                 .OrderByDesc("Product.UpdatedDate")
                 .OrderByDesc("Product.CreatedDate")
-                .ForPage(pageNo, pageSize); 
+                .ForPage(pageNumber, pageSize); 
 
             return await result.GetAsync<ProductResponseModel>();
         }

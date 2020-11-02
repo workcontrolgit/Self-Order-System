@@ -1,10 +1,10 @@
 ﻿using IdentityModel;
-using InstantPOS.WebAPI.Configuration;
-using InstantPOS.WebAPI.Constants;
+using InstantPOS.Infrastructure.Constants;
+using InstantPOS.Infrastructure.OidcConfiguration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace InstantPOS.WebAPI.Helpers
+namespace InstantPOS.Infrastructure.Helpers
 {
     public static class StartupHelpers
     {

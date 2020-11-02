@@ -92,9 +92,9 @@ namespace InstantPOS.WebAPI.Controllers
         }
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<ProductResponseModel>> Get(int pageNo, int pageSize)
+        public async Task<IEnumerable<ProductResponseModel>> Get(int pageNumber, int pageSize)
         {
-            var query = new FetchProductQuery() { PageNo = pageNo, PageSize = pageSize };
+            var query = new FetchProductQuery() { PageNumber = pageNumber, PageSize = pageSize };
             return await Mediator.Send(query);
         }
 
@@ -154,7 +154,7 @@ namespace InstantPOS.WebAPI.Controllers
 ### FetchProductQuery.cs in InstantPOS.Application > CQRS > Product > Query
     public class FetchProductQuery : IRequest<IEnumerable<ProductResponseModel>>
     {
-        public int PageNo { get; set; }
+        public int PageNumber { get; set; }
         public int PageSize { get; set; }
 
     }
@@ -164,7 +164,7 @@ namespace InstantPOS.WebAPI.Controllers
     }
     public async Task<IEnumerable<ProductResponseModel>> Handle(FetchProductQuery request, CancellationToken cancellationToken)
     {
-        var result = await _productDataService.FetchProduct(request.PageNo, request.PageSize);
+        var result = await _productDataService.FetchProduct(request.PageNumber, request.PageSize);
 
         return result;
     }
@@ -172,7 +172,7 @@ namespace InstantPOS.WebAPI.Controllers
 ### FetchProductQueryHandler.cs in InstantPOS.Application > CQRS > Product > QueryHandler
     public class FetchProductQuery : IRequest<IEnumerable<ProductResponseModel>>
     {
-        public int PageNo { get; set; }
+        public int PageNumber { get; set; }
         public int PageSize { get; set; }
 
     }
@@ -182,13 +182,13 @@ namespace InstantPOS.WebAPI.Controllers
     }
     public async Task<IEnumerable<ProductResponseModel>> Handle(FetchProductQuery request, CancellationToken cancellationToken)
     {
-        var result = await _productDataService.FetchProduct(request.PageNo, request.PageSize);
+        var result = await _productDataService.FetchProduct(request.PageNumber, request.PageSize);
 
         return result;
     }
 
 ### ProductDataServices.cs in InstantPOS.Infrastructure > DatabaseServices
-    public async Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNo, int pageSize)
+    public async Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNumber, int pageSize)
     {
 
         var result = _db.Query("Product")
@@ -202,7 +202,7 @@ namespace InstantPOS.WebAPI.Controllers
             .Join("ProductType", "ProductType.ProductTypeID", "Product.ProductTypeID")
             .OrderByDesc("Product.UpdatedDate")
             .OrderByDesc("Product.CreatedDate")
-            .ForPage(pageNo, pageSize); 
+            .ForPage(pageNumber, pageSize); 
 
         return await result.GetAsync<ProductResponseModel>();
     }
@@ -212,15 +212,15 @@ namespace InstantPOS.WebAPI.Controllers
     {
         Task<bool> CreateProduct(CreateProductCommand request);
         Task<bool> DeleteProduct(Guid productTypeId);
-        Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNo, int pageSize);
+        Task<IEnumerable<ProductResponseModel>> FetchProduct(int pageNumber, int pageSize);
     }
 ### ProductsController in  InstantPOS.WebAPI > Controllers
 
     // GET: api/values
     [HttpGet]
-    public async Task<IEnumerable<ProductResponseModel>> Get(int pageNo, int pageSize)
+    public async Task<IEnumerable<ProductResponseModel>> Get(int pageNumber, int pageSize)
     {
-        var query = new FetchProductQuery() { PageNo = pageNo, PageSize = pageSize };
+        var query = new FetchProductQuery() { PageNumber = pageNumber, PageSize = pageSize };
         return await Mediator.Send(query);
     }
 
@@ -239,7 +239,7 @@ namespace InstantPOS.WebAPI.Controllers
             In = ParameterLocation.Header,
         });
 
-        c.AddFluentValidationRules();
+        //c.AddFluentValidationRules();
         c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
     });
 
