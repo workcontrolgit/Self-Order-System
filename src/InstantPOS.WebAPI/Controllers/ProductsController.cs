@@ -1,7 +1,6 @@
 ﻿using InstantPOS.Application.CQRS.Product.Command;
 using InstantPOS.Application.CQRS.Product.Query;
 using InstantPOS.Application.Models.Product;
-using InstantPOS.WebAPI.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +22,9 @@ namespace InstantPOS.WebAPI.Controllers
         }
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<ProductResponseModel>> Get(int pageNo, int pageSize)
+        public async Task<IEnumerable<ProductResponseModel>> Get(int pageNumber, int pageSize)
         {
-            var query = new FetchProductQuery() { PageNo = pageNo, PageSize = pageSize };
+            var query = new FetchProductQuery() { PageNumber = pageNumber, PageSize = pageSize };
             return await Mediator.Send(query);
         }
 

@@ -1,19 +1,14 @@
+using FluentValidation.AspNetCore;
 using InstantPOS.Application;
 using InstantPOS.Infrastructure;
-using InstantPOS.WebAPI.Extensions;
-using InstantPOS.WebAPI.Filters;
-using InstantPOS.WebAPI.Helpers;
+using InstantPOS.Infrastructure.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SqlKata.Compilers;
-using SqlKata.Execution;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Data.SqlClient;
 
 namespace InstantPOS.WebAPI
 {
@@ -29,17 +24,13 @@ namespace InstantPOS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Register services in Installers folder
-            services.AddServicesInAssembly(Configuration);
-
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddControllers(options =>
                 options.Filters.Add(new ApiExceptionFilter()));
 
-            // Add authorization services
-            RegisterAuthorization(services, Configuration);
-
+            services.AddControllers()
+                .AddFluentValidation();
 
             services.AddSwaggerGen(c =>
             {
@@ -49,7 +40,6 @@ namespace InstantPOS.WebAPI
                     Scheme = "Bearer",
                     Description = "Enter 'Bearer' following by space and JWT.",
                     Name = "Authorization",
-                    //Type = SecuritySchemeType.Http,
                     Type = SecuritySchemeType.ApiKey,
                     In = ParameterLocation.Header,
                 });
@@ -57,6 +47,8 @@ namespace InstantPOS.WebAPI
                 c.AddFluentValidationRules();
                 c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,9 +79,6 @@ namespace InstantPOS.WebAPI
                 endpoints.MapControllers();
             });
         }
-        public virtual void RegisterAuthorization(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddAuthorizationPolicies(configuration);
-        }
+
     }
 }

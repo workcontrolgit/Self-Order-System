@@ -16,8 +16,6 @@
     <Folder Include="Validator\" />
     <Folder Include="Mappings\" />
     <Folder Include="Common\ExtensionMethods\" />
-    <Folder Include="DatabaseServices\" />
-    <Folder Include="DatabaseServices\Interfaces\" />
     <Folder Include="CQRS\Product\Command\" />
     <Folder Include="CQRS\Product\CommandHandler\" />
     <Folder Include="CQRS\Product\QueryHandler\" />

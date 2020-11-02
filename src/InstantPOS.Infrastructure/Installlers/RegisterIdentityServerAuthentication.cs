@@ -1,11 +1,13 @@
 ﻿using IdentityServer4.AccessTokenValidation;
-using InstantPOS.WebAPI.Contracts;
+using InstantPOS.Infrastructure.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-
-namespace InstantPOS.WebAPI.Installers
+namespace InstantPOS.Infrastructure.Installlers
 {
     internal class RegisterIdentityServerAuthentication : IServiceRegistration
     {
