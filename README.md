@@ -37,7 +37,7 @@ Design Patterns
 - Dependency Injection
 
 # IdentityServer4 Integration Code
-### RegisterIdentityServerAuthentication.cs in IntantPOS.WebAI > Installers
+### RegisterIdentityServerAuthentication.cs in IntantPOS.Infrastructure > Installers
 
     internal class RegisterIdentityServerAuthentication : IServiceRegistration
     {
@@ -56,7 +56,7 @@ Design Patterns
                     });
         }
     }
-### StartupHelpers.cs in IntantPOS.WebAI > Helpers
+### StartupHelpers.cs in IntantPOS.Infrastructure > Helpers
     public static class StartupHelpers
     {
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
@@ -225,7 +225,7 @@ namespace InstantPOS.WebAPI.Controllers
     }
 
 # Register Swagger 
-### Startup.cs in IntantPOS.WebAI 
+### RegisterServices.cs in IntantPOS.Infrastructure
     services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Instant POS API", Version = "v1" });
@@ -243,7 +243,7 @@ namespace InstantPOS.WebAPI.Controllers
         c.OperationFilter<SwaggerAuthorizeCheckOperationFilter>();
     });
 
-### SwaggerAuthorizeCheckOperationFilter.cs, project InstantPOS.WebAPI > Filters
+### SwaggerAuthorizeCheckOperationFilter.cs, project InstantPOS.Infrastructure > Filters
 
     public class SwaggerAuthorizeCheckOperationFilter : IOperationFilter
     {
