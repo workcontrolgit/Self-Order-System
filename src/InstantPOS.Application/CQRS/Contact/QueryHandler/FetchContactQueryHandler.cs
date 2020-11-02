@@ -15,7 +15,7 @@ namespace InstantPOS.Application.CQRS.Contact.QueryHandler
         }
         public async Task<IEnumerable<ContactResponseModel>> Handle(FetchContactQuery request, CancellationToken cancellationToken)
         {
-            var result = await _contactDataService.FetchContact(request.PageNo, request.PageSize);
+            var result = await _contactDataService.FetchContact(request.PageNumber, request.PageSize);
 
             return result;
         }

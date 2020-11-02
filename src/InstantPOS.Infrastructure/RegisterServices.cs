@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System;
 using InstantPOS.Application.MockDataServices.Interfaces;
 using InstantPOS.Infrastructure.MockDataServices;
+using InstantPOS.Infrastructure.Helpers;
 
 namespace InstantPOS.Infrastructure
 {
@@ -23,6 +24,10 @@ namespace InstantPOS.Infrastructure
             services.AddTransient<IDatabaseConnectionFactory>(e => {
                 return new SqlConnectionFactory(configuration[Configuration.ConnectionString]);
             });
+
+            //ID4
+            services.AddAuthorizationPolicies(configuration);
+
             //SQLKata DI Container https://sqlkata.com/docs/
             services.AddScoped(factory =>
             {

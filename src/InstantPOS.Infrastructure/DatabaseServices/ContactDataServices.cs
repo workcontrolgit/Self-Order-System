@@ -24,7 +24,7 @@ namespace InstantPOS.Infrastructure.DatabaseServices
             _contactsGeneratorService = dataGeneratorService;
         }
 
-        public async Task<IEnumerable<ContactResponseModel>> FetchContact(int pageNo, int pageSize)
+        public async Task<IEnumerable<ContactResponseModel>> FetchContact(int pageNumber, int pageSize)
         {
 
             //Example of custom data
@@ -34,7 +34,7 @@ namespace InstantPOS.Infrastructure.DatabaseServices
 
             IEnumerable<ContactResponseModel> contacts = await _contactsGeneratorService.Collection(10000);
 
-            var result = contacts.Skip((pageNo - 1) * pageSize).Take(pageSize);
+            var result = contacts.Skip((pageNumber - 1) * pageSize).Take(pageSize);
 
             return result;
         }

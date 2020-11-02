@@ -26,16 +26,14 @@ namespace InstantPOS.WebAPI.Controllers
         /// <summary>
         /// Gets all folders.
         /// </summary>
-        /// <param name="pageNo">
+        /// <param name="pageNumber">
         /// Required account ID.
         /// </param>
         [Description("description 1")]
         [HttpGet]
-        [SwaggerParameter("pageNo", "Page number to display", DataType = "integer", ParameterType = "query")]
-        [SwaggerParameter("pageSize", "Items to display per page", DataType = "integer", ParameterType = "query")]
-        public async Task<IEnumerable<ContactResponseModel>> Get(int pageNo, int pageSize)
+        public async Task<IEnumerable<ContactResponseModel>> Get(int pageNumber, int pageSize)
         {
-            var query = new FetchContactQuery() { PageNo = pageNo, PageSize = pageSize };
+            var query = new FetchContactQuery() { PageNumber = pageNumber, PageSize = pageSize };
             return await Mediator.Send(query);
         }
 

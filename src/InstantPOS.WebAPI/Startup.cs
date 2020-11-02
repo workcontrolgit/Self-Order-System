@@ -3,7 +3,6 @@ using InstantPOS.Application;
 using InstantPOS.Infrastructure;
 using InstantPOS.WebAPI.Extensions;
 using InstantPOS.WebAPI.Filters;
-using InstantPOS.WebAPI.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,9 +36,6 @@ namespace InstantPOS.WebAPI
             services.AddInfrastructure(Configuration);
             services.AddControllers(options =>
                 options.Filters.Add(new ApiExceptionFilter()));
-
-            // Add authorization services
-            RegisterAuthorization(services, Configuration);
 
             services.AddControllers()
                 .AddFluentValidation();
@@ -92,9 +88,6 @@ namespace InstantPOS.WebAPI
                 endpoints.MapControllers();
             });
         }
-        public virtual void RegisterAuthorization(IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddAuthorizationPolicies(configuration);
-        }
+
     }
 }

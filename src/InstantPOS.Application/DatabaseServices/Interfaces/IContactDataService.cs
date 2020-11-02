@@ -7,6 +7,6 @@ namespace InstantPOS.Application.DatabaseServices.Interfaces
 {
     public interface IContactDataService
     {
-        Task<IEnumerable<ContactResponseModel>> FetchContact(int pageNo, int pageSize);
+        Task<IEnumerable<ContactResponseModel>> FetchContact(int pageNumber, int pageSize);
     }
 }
