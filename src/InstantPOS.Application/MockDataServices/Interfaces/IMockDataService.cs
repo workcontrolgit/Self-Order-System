@@ -24,6 +24,6 @@ namespace InstantPOS.Application.MockDataServices.Interfaces
         /// Generates an object of type T with data
         /// </summary>
         /// <returns>T with data based on the properties in T</returns>
-        T Instance();
+        Task<T> Instance();
     }
 }
