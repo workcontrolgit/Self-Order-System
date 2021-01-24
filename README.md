@@ -8,6 +8,9 @@ I am working on a modernization project where the backend databases have ton of 
 
 I kept the original repo in the "forked" branch.   If you want to see the code changes as a result of IdentityServer4 integration, compare the "forked" vs "master" branch.  If you are new to IdentityServer4 and look for an enterprise application security solution, check out my blog [DevKit API Security — IdentityServer4 with Admin UI, ASP.NET WebAPI, and Angular Tutorial](https://medium.com/scrum-and-coke/devkit-webapi-security-d7a45e34a5cd)
 
+## Update as of 1/23/2021
+I created an Visual Studio template to create ASP.NET Core WebAPI based on Clean Architecture, Dapper, and SqlKata.  It is avaiable for download from [Visual Studio Market Place](https://marketplace.visualstudio.com/items?itemName=workcontrol.VSIXTemplateKissApi).  
+
 ## Enhancements Made to Original Repo
 - Integration example with IdentityServer4 to secure WebAPI using authorizaton filter policy
 - Registering SQLKata in dependency injection (DI) container
