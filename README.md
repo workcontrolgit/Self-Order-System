@@ -10,7 +10,7 @@ I kept the original repo in the "forked" branch.   If you want to see the code c
 
 ## Enhancements Made to Original Repo
 - Integration example with IdentityServer4 to secure WebAPI using authorizaton filter policy
-- Registering SQLKaa in dependency injection (DI) container
+- Registering SQLKata in dependency injection (DI) container
 - Adding paging example code in CQRS for SQLKata "ForPage"
 - Adding Swagger and Swagger filter to allow entering of Bearer Token in Swagger UI in order to test WebAPI
 
